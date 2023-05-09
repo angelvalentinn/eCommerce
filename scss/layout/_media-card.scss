@@ -1,0 +1,58 @@
+@media screen and (min-width: 600px) {
+    
+    .card {
+
+        .card__container {
+            border-radius: 1.5rem;
+            padding: 0.5rem 0;
+            .card__img {
+                height: 200px;
+                width: 200px;
+            }
+    
+            .card__nick {
+                text-transform: uppercase;
+                font-size: 0.8rem;
+                width: 100%;
+                margin: 0 auto;
+            }
+    
+            .card__precio {
+                font-size: 1.5rem;
+            }
+    
+            .card__btn {    
+                padding: 0.7rem 0;
+                width: 80%;
+                font-size: 0.7rem;
+                
+                a {
+                    font-weight: 600;
+                }
+            }
+
+            }
+            
+    }
+
+}
+
+@media screen and (min-width: 800px) {
+
+    .card {
+        justify-content:center;
+        padding-right: 40px; 
+
+
+        //ANALIZAR
+        .list {
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            margin-inline: 120px;
+            margin-bottom: 20px;
+        }
+
+    }
+
+}

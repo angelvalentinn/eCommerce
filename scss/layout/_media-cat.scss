@@ -1,0 +1,70 @@
+@media screen and (min-width: 600px) {
+    
+    .cat {
+    
+        .content {
+
+            .content__bienvenido {
+                font-size: 1.2rem;
+            }
+
+            .content__tittle {
+                width: 50%;
+                font-size: 1.6rem;
+            }
+    
+            .content__text {
+                font-size: 1.3rem;
+            }
+    
+        }
+    
+    }
+
+}
+
+@media screen and (min-width: 800px) {
+
+    .cat {
+        padding-bottom: 40px;
+        padding-top:30px;
+        /* background-image:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5))
+        , url(../assets/manodedios.png);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover; */
+    
+        .content {
+            gap: 1.6rem;
+    
+            .content__bienvenido{
+                font-weight: 400;
+                font-size: 1.4rem;
+            }
+    
+            .content__tittle {
+                font-size: 2.6rem;
+            }
+    
+            .content__text {
+                width: 50%;
+            }
+    
+            .content__container__img {
+                height: 600px;
+                width: 600px;
+                right: 10px;
+                top: 0;
+                
+                .content__img {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    
+    }
+
+}

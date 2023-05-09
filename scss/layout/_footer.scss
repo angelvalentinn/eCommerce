@@ -1,0 +1,22 @@
+.footer {
+    @include flexbox (column,center,center);
+    gap: .4rem;
+    border-top: 1px solid $color-secundario;
+    
+    .footer__text {
+        color: $color-grey;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-align: $text-align;
+    }
+
+    .redes {
+        @include flexbox (row,center,center);
+        gap: 0.8rem;
+        a {
+            color: $color-grey;
+            font-size: 1.3rem;
+            
+        }
+    }
+}

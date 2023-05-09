@@ -1,0 +1,98 @@
+.header {
+    @include flexbox (column,normal,center);
+    gap: 1.3rem;
+    padding-top: 0;
+    
+    .header__msj {
+        background-color: $color-principal;
+        width: 100%;
+        text-align: $text-align;
+        color: $color-white;
+        padding: 8px 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+        .header__logo__container {
+            @include flexbox (column,center,center);
+            margin-left: -10px;
+            
+            .header__container__img {
+                
+                width: 100px;
+                height: 100px;
+                .header__img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: contain;
+                    
+                }
+            }
+
+            .header__tittle {
+                span {
+                    color: $color-grey;
+                }
+                color: $color-principal;
+            }
+        }
+
+        .header__social {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            i {
+                color: $color-principal;
+                font-size: 1.1rem;
+            }
+        }
+    
+    
+        .header__search {
+            @include flexbox (row,center,center);
+            width: 100%;
+            input {
+                border: none;
+                border: 1px solid #dee2e6;
+                border-radius: 8px;
+                padding-left: 12px;
+                box-shadow: 0 2px  8px rgba(0,0,0,.3);
+                height: 40px;
+                
+            }
+            .buscar {
+                text-align: justify;
+                color: $color-grey;
+                font-weight: 500;
+                /* padding: .7rem 5rem;
+                padding-left: 10px; */
+                width: 75%;
+                border-right: none;
+                max-width: 600px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+            .botonbuscar {
+                background: none;
+                border: 1px solid #dee2e6;
+                border-left: 1px solid #dee2e6;
+                color: gray;
+                padding: 0 20px;
+                max-width: 25%;
+                border-left: 1px solid #e2e2e2;
+                &:hover {
+                    background-color: $color-principal;
+                    border: 1px solid $color-principal;
+                    outline: none;
+                    transition: .2s ease;
+                    color: $color-white;
+                    cursor: pointer;
+                }
+            }
+        }
+    
+
+}

@@ -1,0 +1,24 @@
+.container {
+    padding: 40px 0px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+a {
+    text-decoration: none;
+}
+
+.disabled {
+    display: none !important;
+}

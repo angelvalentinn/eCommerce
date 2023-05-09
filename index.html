@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/6006c8cd38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <title>FutCar Store</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header class="header container">
+        <div class="header__msj">Adquirí tu carta al instante!</div>
+
+        <div class="header__logo__container">
+          <div class="header__container__img">
+            <img class="header__img" src="./assets/logo.png" alt="Logo" />
+          </div>
+          <h1 class="header__tittle"><span>Futcard</span> Store</h1>
+        </div>
+
+        <div class="header__social">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="far fa-envelope-open"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#"><i class="fa-solid fa-phone"></i></a>
+        </div>
+
+        <form action="" class="header__search">
+          <input type="text" placeholder="Buscar cartas" class="buscar" />
+          <input type="submit" class="botonbuscar" value="🔎︎" />
+        </form>
+      </header>
+
+      <main>
+        <section class="cat container">
+          <div class="content container">
+            <h3 class="content__bienvenido">Bienvenidos a Futcard</h3>
+            <h2 class="content__tittle">
+              Escojé tu carta favorita y obtenela al instante.
+            </h2>
+            <p class="content__text">
+              Con futacard adquirí la carta que quieras desde cualquier parte
+              del mundo para tu juego fifa. Sin ningun tipo de comisión, a un
+              precio accesible y de forma segura.
+            </p>
+            <div class="content__container__img">
+              <img class="content__img" src="./assets/mbappe.png" alt="" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card container" id="card">
+          <div class="list">
+            <ul class="list__ul">
+              <li class="cat__li--tittle">Categorías</li>
+              <li class="cat__li" id="especiales">Especiales</li>
+              <li class="cat__li" id="futurasEstrellas">Futuras Estrellas</li>
+              <li class="cat__li" id="centuriones">Centuriones</li>
+              <li class="cat__li" id="flashbacks">Flashbacks</li>
+              <li class="cat__li" id="todos">Todos los productos</li>
+            </ul>
+          </div>
+
+          <div class="contenedorDeCards"></div>
+        </section>
+      </main>
+
+      <footer class="footer container">
+        <h6 class="footer__text">
+          Ángel Altieri - Proyecto Final - Coderhouse
+        </h6>
+
+        <div class="redes">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-github"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </footer>
+
+      <section class="carrito" id="seccion-carrito">
+        <div class="icono-carrito btn-a-c" id="icono-carrito">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="num" class="num disabled"></span>
+        </div>
+
+        <div class="productosElegidos disabled" id="seccion-productosElegidos">
+            <div class="productosElegidos__up">
+                <h4 class="productosElegidos__tittle">Carrito</h4>
+                <div class="right">
+                    <button class="vaciar-carrito" id="vaciar-carrito">Vaciar carrito</button>
+                    <div class="btn-a-c x" id="x"><i class="fa-solid fa-x"></i></div>
+                </div>
+            </div>
+
+            <div class="productosElegidos__content">
+                <!-- <div class="productoElegido__container">
+                  <div class="img-producto"></div>
+                  <p class="cant"><button class="icon-menos">-</button> 1 <button class="icon-mas">+</button></p>
+                  <p class="precio">$3200,00</p>
+                  <div class="trash"><i class="fa-solid fa-trash"></i></div>
+                </div> -->
+            </div>
+            
+            <button class="finalizar-compra">
+                Finalizar compra: <p class="productosElegidos__total"> $540.000,00</p>
+            </button>
+        </div>
+        
+      </section>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

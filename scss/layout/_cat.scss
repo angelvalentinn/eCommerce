@@ -1,0 +1,49 @@
+.cat {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 0;
+    background-color: $color-principal;
+    position: relative;
+    
+
+    .content {
+        @include flexbox(column,normal, normal);
+        gap: 1.6rem;
+        position: relative;
+        z-index: 0;
+
+        .content__bienvenido{
+            font-weight: 300;
+            color: $color-grey;
+            margin-top: -30px;
+            /* text-shadow:  0 0 8px rgba(0,0,0,.5); */
+        }
+
+        .content__tittle {
+            color: $color-secundario;
+            width: 70%;
+        }
+
+        .content__text {
+            color: $color-secundario;
+        }
+
+        .content__container__img {
+            height: 300px;
+            width: 300px;
+            position: absolute;
+            z-index: -1;
+            right: 0;
+            top: 10px;
+            
+            .content__img {
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+                filter: drop-shadow(8px 8px 4px rgba(0,0,0,0.5));
+            }
+        }
+    }
+
+}

@@ -1,0 +1,137 @@
+.carrito {
+    position: fixed;
+    bottom: 10px;
+    right: 5px;
+    background-color: $color-white;
+    border-radius: 20px;
+    .icono-carrito {
+        cursor: pointer;
+        border-radius: 20px;
+        font-size: 2rem;
+        padding: 20px 30px;
+        color: $color-principal;
+        box-shadow: 0 0 10px #b1b1b1;
+        position: relative;
+        .num {
+            border: 2px solid $color-principal;
+            background-color: $color-principal;
+            color: $color-white;
+            border-radius: 50%;
+            min-width: 2rem;
+            height: 2rem;
+            font-size: 1rem;
+            position: absolute;
+            display: block;
+            top: -10px;
+            left: -4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .productosElegidos {
+        padding: 10px 0px;
+        padding-bottom: 0;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .productosElegidos__up {
+            padding-inline: 20px;
+            padding-bottom: 10px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            .productosElegidos__tittle {
+                color: $color-principal;
+            }
+            .right {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                .vaciar-carrito {
+                    border: none;
+                    background-color: inherit;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+                .x {
+                    cursor: pointer;
+                }
+            }
+        }
+        .productosElegidos__content {
+            padding-inline:20px;
+            width: 100%;
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            
+            .productoElegido__container{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .img-producto {
+                    height: 100px;
+                    width: 80px;
+                    img {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+                .cant {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 9px;
+                    .icon-menos, .icon-mas {
+                        border: none;
+                        background-color: inherit;
+                        font-size: 1.3rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                    }
+                }
+                .trash {
+                    color: $color-principal;
+                    cursor: pointer;
+                }
+            }
+            
+        }
+        .productoElegido__container:first-child {
+            padding-top: 20px;
+        }
+        .productoElegido__container:last-child {
+            padding-bottom: 10px;
+        }
+        .finalizar-compra {
+            cursor: pointer;
+            align-self: stretch;
+            border: none;
+            background-color: $color-principal;
+            color: $color-white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border-radius: 0 0 20px 20px;
+            &:hover {
+                background-color: #000;
+                transition: .4s ease;
+            }
+        }   
+    }
+}

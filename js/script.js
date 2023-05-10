@@ -170,8 +170,8 @@ function agregarAlCarrito (e) {
     } else {
         productoAgregado.cantidad = 1;
         productosEnCarrito.push(productoAgregado);
-
-        const div = document.createElement("div");
+    }
+    const div = document.createElement("div");
         div.classList.add("productoElegido__container");
         div.innerHTML = `
         <div class="img-producto"><img src="${productoAgregado.img}" alt=""></div>
@@ -180,7 +180,6 @@ function agregarAlCarrito (e) {
         <div class="trash" id="${productoAgregado.nombre}"><i class="fa-solid fa-trash"></i></div>
         `;
         productosElegidosContenedor.append(div);
-    }
     
     localStorage.setItem("productosEnCarrito", JSON.stringify(productosEnCarrito) );
     guardarEnLocal();

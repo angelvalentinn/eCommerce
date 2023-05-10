@@ -132,7 +132,7 @@ function cargarProductosCarrito() {
     
         productosEnCarrito = productosEnCarritoLS;
         actualizarNumerito();
-        
+
         productosEnCarrito.forEach(producto => {
     
             productosElegidosContenedor = document.querySelector(".productosElegidos__content");
@@ -184,7 +184,7 @@ function agregarAlCarrito (e) {
     localStorage.setItem("productosEnCarrito", JSON.stringify(productosEnCarrito) );
     guardarEnLocal();
     actualizarNumerito();
-    
+
 }
 
 

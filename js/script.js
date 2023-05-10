@@ -8,7 +8,8 @@ let seccionProductosElegidos = document.getElementById("seccion-productosElegido
 let btnAYC = document.querySelectorAll(".btn-a-c");
 let numerito = document.getElementById("num");
 let vaciarCarrito = document.getElementById("vaciar-carrito");
-
+let productosElegidosContenedor = document.querySelector(".productosElegidos__content");
+let botonesEliminarProducto = document.querySelectorAll(".trash");
 //Array de objetos con los productos
 const productos = [ 
     { nombre: "Especial - Joao Cancelo", precio: "$400" , img: "./assets/especial-cancelo.webp",cat: "especiales"},
@@ -123,7 +124,35 @@ vaciarCarrito.addEventListener("click", () => {
 })
 
 //Declaramos un array en el que se van a guardar los productos que elijamos
-let productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
+let productosEnCarrito;
+const productosEnCarritoLS = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
+
+function cargarProductosCarrito() {
+    if ( productosEnCarritoLS ) {
+    
+        productosEnCarrito = productosEnCarritoLS;
+        actualizarNumerito();
+        
+        productosEnCarrito.forEach(producto => {
+    
+            productosElegidosContenedor = document.querySelector(".productosElegidos__content");
+            const div = document.createElement("div");
+            div.classList.add("productoElegido__container");
+            div.innerHTML = `
+            <div class="img-producto"><img src="${producto.img}" alt=""></div>
+            <p class="cant"><button class="icon-menos" id="${producto.nombre}">-</button> ${producto.cantidad} <button class="icon-mas" id="${producto.nombre}">+</button></p>
+            <p class="precio">${producto.precio}</p>
+            <div class="trash" id="${producto.nombre}"><i class="fa-solid fa-trash"></i></div>
+            `;
+            productosElegidosContenedor.append(div);
+    
+        })
+    
+    } else {
+        productosEnCarrito = [];
+    }
+}
+cargarProductosCarrito();
 
 //Función que se va a ejecutar cuando le demos click a cada boton de agregar al carrito
 function agregarAlCarrito (e) {
@@ -133,7 +162,7 @@ function agregarAlCarrito (e) {
     let productoAgregado = productos.find(producto => producto.nombre === idBoton); //Buscamos en el array de productos si a lo que le dimos click existe en el array
     
     //Aca buscamos si ya existe en el array de carrito lo que queremos añadir, si es existe incrementamos la cantidad y si no, le declaramos la cantidad en 0 y pusheamos en el carrito el producto
-    const productosElegidosContenedor = document.querySelector(".productosElegidos__content");
+     productosElegidosContenedor = document.querySelector(".productosElegidos__content");
     
     if ( productosEnCarrito.some(producto => idBoton == producto.nombre) ) {
         let i = productosEnCarrito.findIndex(producto => idBoton == producto.nombre);
@@ -141,20 +170,22 @@ function agregarAlCarrito (e) {
     } else {
         productoAgregado.cantidad = 1;
         productosEnCarrito.push(productoAgregado);
+
         const div = document.createElement("div");
         div.classList.add("productoElegido__container");
         div.innerHTML = `
         <div class="img-producto"><img src="${productoAgregado.img}" alt=""></div>
-        <p class="cant"><button class="icon-menos" id="${productoAgregado.id}">-</button> ${productoAgregado.cantidad} <button class="icon-mas" id="${productoAgregado.id}">+</button></p>
+        <p class="cant"><button class="icon-menos" id="${productoAgregado.nombre}">-</button> ${productoAgregado.cantidad} <button class="icon-mas" id="${productoAgregado.nombre}">+</button></p>
         <p class="precio">${productoAgregado.precio}</p>
-        <div class="trash" id="${productoAgregado.id}"><i class="fa-solid fa-trash"></i></div>
+        <div class="trash" id="${productoAgregado.nombre}"><i class="fa-solid fa-trash"></i></div>
         `;
         productosElegidosContenedor.append(div);
     }
     
     localStorage.setItem("productosEnCarrito", JSON.stringify(productosEnCarrito) );
-
+    guardarEnLocal();
     actualizarNumerito();
+    
 }
 
 
@@ -166,3 +197,24 @@ function actualizarNumerito() {
     numerito.innerText = JSON.parse(localStorage.getItem("numerito"));
 }
 actualizarNumerito();
+
+function guardarEnLocal () {
+    localStorage.setItem("productosEnCarrito", JSON.stringify(productosEnCarrito) );
+}
+
+/* function actualizarBotonesEliminar() {
+    botonesEliminarProducto = document.querySelectorAll(".trash");
+
+    botonesEliminarProducto.forEach(btn => {
+        btn.addEventListener("click", eliminarDelCarrito);
+    })
+}
+function eliminarDelCarrito (e) {
+    let idBoton = e.currentTarget.id;
+    let i = productosEnCarrito.findIndex(producto => idBoton === producto.id)
+    productosEnCarrito.splice(i,1);
+    cargarProductosCarrito();
+    localStorage.setItem("productosEnCarrito",JSON.stringify(productosEnCarrito))
+} */
+
+

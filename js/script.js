@@ -213,5 +213,11 @@ function eliminarDelCarrito (e) {
     cargarProductosCarrito();
     actualizarTotal();      //Queremos que cuando se elimine que se vuelvan a cargar los productos en el dom, asi se elimina el elegido
     actualizarNumerito();   //Y que se actualice el total y el numerito
+    if ( productosEnCarrito.length == 0 ) {
+        carrito.classList.add("disabled");
+        seccionProductosElegidos.classList.add("disabled"); 
+    //Si cuando eliminamos productos uno por uno ya no queda nada, es decir, estamos por eliminar el ultimo producto, 
+    //Desaparece el carrito
+    }
 }
 

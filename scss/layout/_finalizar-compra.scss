@@ -1,24 +1,30 @@
+
 .compra-finalizada {
 position: fixed;
-top: 80px;
-bottom: 200px;
-right: 300px;
-left: 300px;
+top:0;
+bottom: 0;
+right: 0;
+left: 0;
 box-shadow: 0 0 10px rgba(0,0,0,.5);
+background-color: rgba(0,0,0,.4);
 border-radius: 10px;
 display: flex;
 align-items: center;
 justify-content: center;
-background-color: $color-white;
 color: $color-grey;
--webkit-animation: bounce-in-top 1.1s both;
-animation: bounce-in-top 1.1s both;
+
 .compra-finalizada__content {
+        background-color: $color-white;
+        width: 600px;
+        padding: 30px 0 20px 0;
+        border-radius: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 2rem;
+        -webkit-animation: bounce-in-top 1.1s both;
+        animation: bounce-in-top 1.1s both;
         .tilde {
                 height: 100px;
                 width: 100px;

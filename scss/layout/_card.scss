@@ -61,6 +61,7 @@
             @include flexbox (column,center,center);
             flex-basis: 1px;
             border: 4px solid $color-principal;
+            box-shadow: 0 0 10px #9e9d9d;
             border-radius: 1.5rem;
             padding: 1.3rem 0;
             text-align: $text-align;

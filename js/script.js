@@ -5,7 +5,6 @@ let seccionCarrito = document.getElementById("seccion-carrito");
 let carrito = document.getElementById("icono-carrito");
 let botonesAgregar = document.querySelectorAll(".card__btn");
 let seccionProductosElegidos = document.getElementById("seccion-productosElegidos");
-let btnAYC = document.querySelectorAll(".btn-a-c");
 let numerito = document.getElementById("num");
 let vaciarCarrito = document.getElementById("vaciar-carrito");
 let productosElegidosContenedor = document.querySelector(".productosElegidos__content");
@@ -14,6 +13,9 @@ let total  = document.querySelector(".productosElegidos__total");
 let btnFinalizarCompra = document.querySelector(".finalizar-compra");
 let compraFinalizada = document.querySelector(".compra-finalizada");
 let btnOkCompraFinalizada = document.querySelector(".compra-finalizada__btn");
+let btnAbrir = document.querySelector(".btn-abrir");
+let btnCerrar = document.querySelector(".btn-cerrar");
+
 //Array de objetos con los productos
 const productos = [ 
     { nombre: "Especial - Joao Cancelo", precio: "400" , img: "./assets/especial-cancelo.webp",cat: "especiales"},
@@ -72,18 +74,16 @@ catLi.forEach(li => {
     })
 })
 
+//Para abrir y cerrar el carrito
+btnAbrir.addEventListener("click", () => {
+    carrito.classList.add("disabled");
+    seccionProductosElegidos.classList.remove("disabled");
 
-//Recorrer la node list de los botones para abrir el carrito y cerrar el carrito
-btnAYC.forEach(btn => {
-    btn.addEventListener("click", abrirYCerrarCarrito );
+    btnCerrar.addEventListener("click", () => {
+    carrito.classList.remove("disabled");
+    seccionProductosElegidos.classList.add("disabled");
+    })
 })
-
-//Función para abrir y cerrar el carrito, sencillo con toggle, ya que obtenemos nodelist de los botones abrir y cerrar y le asignamos esta función
-function abrirYCerrarCarrito () {
-    carrito.classList.toggle("disabled");
-    seccionProductosElegidos.classList.toggle("disabled");
-}
-
 
 //Función que obtiene del dom los botones para agregar al carrito y le añade a cada boton un evento click
 function actualizarBotonesAgregar() {
@@ -91,6 +91,7 @@ function actualizarBotonesAgregar() {
 
     botonesAgregar.forEach(btn => {
         btn.addEventListener("click", agregarAlCarrito);
+        
     })
 
 }
@@ -147,16 +148,13 @@ function cargarProductosCarrito() {
             div.classList.add("productoElegido__container");
             div.innerHTML = `
             <div class="img-producto"><img src="${producto.img}" alt=""></div>
-            <p class="precio">$${producto.precio}</p>
+            <p class="precio">Total: $${producto.precio}</p>
             <div class="trash" id="${producto.nombre}"><i class="fa-solid fa-trash"></i></div>
             `;
             productosElegidosContenedor.append(div);
-            
-            carrito.classList.remove("disabled");
-    
         })
     actualizarBotonesEliminar(); /* Cada vez que agreguemos un producto al carrito se actualizan los botones, es decir,
-    el dom vuelve a obtener los botones eliminar y les añade un evento eliminar del carrito*/
+    el dom vuelve a obtener los botones eliminar y les añade un evento eliminar del carrito*/ 
     carrito.classList.remove("disabled");
 }
 
@@ -219,10 +217,10 @@ function eliminarDelCarrito (e) {
     cargarProductosCarrito();
     actualizarTotal();      //Queremos que cuando se elimine que se vuelvan a cargar los productos en el dom, asi se elimina el elegido
     actualizarNumerito();   //Y que se actualice el total y el numerito
-
+    carrito.classList.add("disabled");
     if(productosEnCarrito.length == 0) {
         seccionProductosElegidos.classList.add("disabled");
     }
-    carrito.classList.add("disabled");
+    
 }
 

@@ -508,7 +508,7 @@ a {
     .compra-finalizada .compra-finalizada__content .tilde {
       height: 100px;
       width: 100px;
-      border: 2px solid #04ae0433;
+      border: 5px solid #04ae0433;
       border-radius: 50%;
       display: grid;
       place-items: center; }

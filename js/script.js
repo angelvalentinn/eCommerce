@@ -52,7 +52,6 @@ function cargarProductos (productosElegidos) {
             `;
             cardsContainer.append(cardContainer);
         })
-    
     actualizarBotonesAgregar(); //Cuando carga la página y se cargan todos los productos el DOM obtiene la nodelist con todos los elementos
                                 //Y cada vez que cambiemos de categoría suecede lo mismo, se cargan nuevas cards y luego el documento las obtiene
 }
@@ -63,14 +62,12 @@ cargarProductos(productos);
 //Recorremos la  nodelist de los li y les agregamos un evento en el que dependiendo de su categoría se muestren 
 catLi.forEach(li => {
     li.addEventListener("click", (e) => {
-        
         let arrayFiltrado = [];
-
+        
         if ( e.currentTarget.id != "todos" ) {
             arrayFiltrado = productos.filter((producto) => e.currentTarget.id === producto.cat)
             cargarProductos(arrayFiltrado);
         } else cargarProductos(productos);
-    
     })
 })
 
@@ -91,9 +88,7 @@ function actualizarBotonesAgregar() {
 
     botonesAgregar.forEach(btn => {
         btn.addEventListener("click", agregarAlCarrito);
-        
     })
-
 }
 
 //Evento al boton vaciar carrito resetea numerito a 0 y lo borra del storage, lo mismo a los productos agregados
@@ -138,7 +133,6 @@ productosEnCarrito.length == 0 ? carrito.classList.add("disabled") : carrito.cla
 
 //Funcion que carga productos en carrito
 function cargarProductosCarrito() {
-
         productosElegidosContenedor.innerHTML = ""; //Si hay algo en el dom lo seteamos para que no se sobreescriba
 
         productosEnCarrito.forEach(producto => {
@@ -155,7 +149,6 @@ function cargarProductosCarrito() {
         })
     actualizarBotonesEliminar(); /* Cada vez que agreguemos un producto al carrito se actualizan los botones, es decir,
     el dom vuelve a obtener los botones eliminar y les añade un evento eliminar del carrito*/ 
-    carrito.classList.remove("disabled");
 }
 
 //Función que se va a ejecutar cuando le demos click a cada boton de agregar al carrito
@@ -174,6 +167,11 @@ function agregarAlCarrito (e) {
     actualizarNumerito();   //Cada vez que se agregue algo carrito queremos que se actualice, el numerito, el total
     actualizarTotal();     // los botones eliminar que se guarde en el storage y que se vuelva a cargar en el dom
     actualizarBotonesEliminar();
+
+    carrito.classList.remove("disabled");
+
+    if( !seccionProductosElegidos.classList.contains("disabled")) carrito.classList.add("disabled");
+    //En el caso de que este la seccion de los productos añadidos al carrito no queremos que se vea el icono del carrito
 }
 
 //Funcion para actualizar el numerito cuando necesitemos
@@ -204,12 +202,10 @@ function actualizarBotonesEliminar() {
 
     botonesEliminarProducto.forEach(btn => {
         btn.addEventListener("click", eliminarDelCarrito);
-        
     })
 }
 
-function eliminarDelCarrito (e) {
-    
+function eliminarDelCarrito (e) {  
     let idBoton = e.currentTarget.id;
     let i = productosEnCarrito.findIndex(producto => idBoton === producto.id)
     productosEnCarrito.splice(i,1);
@@ -217,10 +213,5 @@ function eliminarDelCarrito (e) {
     cargarProductosCarrito();
     actualizarTotal();      //Queremos que cuando se elimine que se vuelvan a cargar los productos en el dom, asi se elimina el elegido
     actualizarNumerito();   //Y que se actualice el total y el numerito
-    carrito.classList.add("disabled");
-    if(productosEnCarrito.length == 0) {
-        seccionProductosElegidos.classList.add("disabled");
-    }
-    
 }
 

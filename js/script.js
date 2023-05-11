@@ -11,7 +11,9 @@ let vaciarCarrito = document.getElementById("vaciar-carrito");
 let productosElegidosContenedor = document.querySelector(".productosElegidos__content");
 let botonesEliminarProducto = document.querySelectorAll(".trash");
 let total  = document.querySelector(".productosElegidos__total");
-
+let btnFinalizarCompra = document.querySelector(".finalizar-compra");
+let compraFinalizada = document.querySelector(".compra-finalizada");
+let btnOkCompraFinalizada = document.querySelector(".compra-finalizada__btn");
 //Array de objetos con los productos
 const productos = [ 
     { nombre: "Especial - Joao Cancelo", precio: "400" , img: "./assets/especial-cancelo.webp",cat: "especiales"},
@@ -94,17 +96,30 @@ function actualizarBotonesAgregar() {
 }
 
 //Evento al boton vaciar carrito resetea numerito a 0 y lo borra del storage, lo mismo a los productos agregados
-vaciarCarrito.addEventListener("click", () => {
+vaciarCarrito.addEventListener("click", accionesVaciarCarrito);
+
+btnFinalizarCompra.addEventListener("click", () => {
+    compraFinalizada.classList.remove("disabled");
     seccionProductosElegidos.classList.add("disabled");
-    carrito.classList.remove("disabled");
+    
+    btnOkCompraFinalizada.addEventListener("click",  () => {
+        compraFinalizada.classList.add("disabled");
+        accionesVaciarCarrito();
+    });
+})
+
+
+
+function accionesVaciarCarrito () {
+    seccionProductosElegidos.classList.add("disabled"); //Le añadimos la clase disabled al carrito y a la seccion de productos elegidos
+    carrito.classList.add("disabled");  //Para que no se muestre el carrito cuando no haya productos
     localStorage.removeItem("productosEnCarrito");
-    localStorage.removeItem("numerito");
+    localStorage.removeItem("numerito");    //Vaciamos el local del total, numerito y el array y seteamos el DOM
     localStorage.removeItem("total");
     numerito.innerText = "0";
     productosElegidosContenedor.innerHTML = "";
     total.innerText = "0";
-
-})
+}
 
 //Declaramos un array en el que se van a guardar los productos que elijamos
 let productosEnCarrito;
@@ -117,6 +132,8 @@ actualizarBotonesEliminar();
 cargarProductosCarrito();           //Cada vez que se actualice la pagina queremos que se actualicen el total, numerito botones
 actualizarNumerito();              //a eliminar y que se carguen los productos en el dom que haya
 actualizarTotal();
+productosEnCarrito.length == 0 ? carrito.classList.add("disabled") : carrito.classList.remove("disabled");
+//Si no hay productos en carrito el carrito no se muestra y si hay se muestra
 
 //Funcion que carga productos en carrito
 function cargarProductosCarrito() {
@@ -134,10 +151,13 @@ function cargarProductosCarrito() {
             <div class="trash" id="${producto.nombre}"><i class="fa-solid fa-trash"></i></div>
             `;
             productosElegidosContenedor.append(div);
+            
+            carrito.classList.remove("disabled");
     
         })
     actualizarBotonesEliminar(); /* Cada vez que agreguemos un producto al carrito se actualizan los botones, es decir,
     el dom vuelve a obtener los botones eliminar y les añade un evento eliminar del carrito*/
+    carrito.classList.remove("disabled");
 }
 
 //Función que se va a ejecutar cuando le demos click a cada boton de agregar al carrito
@@ -186,7 +206,7 @@ function actualizarBotonesEliminar() {
 
     botonesEliminarProducto.forEach(btn => {
         btn.addEventListener("click", eliminarDelCarrito);
-
+        
     })
 }
 
@@ -199,10 +219,10 @@ function eliminarDelCarrito (e) {
     cargarProductosCarrito();
     actualizarTotal();      //Queremos que cuando se elimine que se vuelvan a cargar los productos en el dom, asi se elimina el elegido
     actualizarNumerito();   //Y que se actualice el total y el numerito
-    
+
     if(productosEnCarrito.length == 0) {
         seccionProductosElegidos.classList.add("disabled");
-        carrito.classList.remove("disabled");
     }
+    carrito.classList.add("disabled");
 }
 

@@ -19,22 +19,35 @@ let btnCerrar = document.querySelector(".btn-cerrar");
 //Array de objetos con los productos
 const productos = [ 
     { nombre: "Especial - Joao Cancelo", precio: "400" , img: "./assets/especial-cancelo.webp",cat: "especiales"},
+    { nombre: "World Cup - Vini JR", precio: "6000" , img: "./assets/wc-vini.webp", cat: "wc"},
     { nombre: "Centurion - Alexander Arnold", precio: "2500" , img: "./assets/centurion-arnold.webp",cat: "centuriones"},
+    { nombre: "Winter - Dembelé", precio: "3200" , img: "./assets/winter-dembele.webp", cat: "winter"},
     { nombre: "Futura Estrella - Gavi", precio: "2100" , img: "./assets/futureStar-gavi.png", cat: "futurasEstrellas"},
     { nombre: "Especial - Kevin De Bruyne", precio: "500" , img: "./assets/especial-debruyne.webp",cat: "especiales"},
     { nombre: "FlashBack - Balotelli", precio: "2200" , img: "./assets/flashback-balotelli.webp", cat: "flashbacks"},
     { nombre: "Futura Estrella - Alvarez", precio: "2400" , img: "./assets/futureStar-alvarez.png", cat: "futurasEstrellas"},
+    { nombre: "World Cup - Koulibaly", precio: "3299" , img: "./assets/wc-koulibaly.webp", cat: "wc"},
+    { nombre: "Winter - Joao Felix", precio: "3000" , img: "./assets/winter-felix.webp", cat: "winter"},
     { nombre: "FlashBack - Jorginho", precio: "2700" , img: "./assets/flashback-jorginho.webp", cat: "flashbacks"},
     { nombre: "Especial - Mohamed Salah", precio: "900" , img: "./assets/especial-salah.webp",cat: "especiales"},
     { nombre: "FlashBack - Leo Messi", precio: "7000" , img: "./assets/flashback-messi.webp", cat: "flashbacks"},
     { nombre: "Centurion - Pellegrini", precio: "2100" , img: "./assets/centurion-pellegrini.webp",cat: "centuriones"},
+    { nombre: "World Cup - Grealish", precio: "2800" , img: "./assets/wc-grealish.webp", cat: "wc"},
+    { nombre: "Winter - Ngolo Kante", precio: "4100" , img: "./assets/winter-kante.webp", cat: "winter"},
     { nombre: "Futura Estrella - Adeyemi", precio: "1800" , img: "./assets/futureStar-adeyemi.png", cat: "futurasEstrellas"},
     { nombre: "Centurion - Kimpembe", precio: "2400" , img: "./assets/centurion-kimpembe.webp",cat: "centuriones"},
     { nombre: "Especial - Cristiano Ronaldo", precio: "800" , img: "./assets/especial-cr7.webp",cat: "especiales"},
+    { nombre: "FlashBack - Thiago Silva", precio: "2500" , img: "./assets/flashback-silva.webp", cat: "flashbacks"},
     { nombre: "Centurion - Neymar Jr", precio: "3200" , img: "./assets/centurion-neymar.webp",cat: "centuriones"},
+    { nombre: "World Cup - Carvajal", precio: "2500" , img: "./assets/wc-carvajal.webp", cat: "wc"},
+    { nombre: "Winter - Ferland Mendy", precio: "2900" , img: "./assets/winter-mendy.webp", cat: "winter"},
     { nombre: "FlashBack - Pogba", precio: "4000" , img: "./assets/flashback-pogba.webp", cat: "flashbacks"},
     { nombre: "Futura Estrella - Vitinha", precio: "2000" , img: "./assets/futureStar-vitinha.png", cat: "futurasEstrellas"},
+    { nombre: "FlashBack - Spinazzola", precio: "3000" , img: "./assets/flashback-spinazzola.webp", cat: "flashbacks"},
     { nombre: "Futura Estrella - Mudrik", precio: "2300" , img: "./assets/futureStar-mudrik.png", cat: "futurasEstrellas"},
+    { nombre: "Winter - Jadon Sancho", precio: "3300" , img: "./assets/winter-sancho.webp", cat: "winter"},
+    { nombre: "World Cup - Araujo", precio: "2800" , img: "./assets/wc-araujo.webp", cat: "wc"}
+
 ];
 
 //Función que carga los productos en el dom y se envía por parametro el array con la información de los productos
@@ -92,19 +105,46 @@ function actualizarBotonesAgregar() {
 }
 
 //Evento al boton vaciar carrito resetea numerito a 0 y lo borra del storage, lo mismo a los productos agregados
-vaciarCarrito.addEventListener("click", accionesVaciarCarrito);
+vaciarCarrito.addEventListener("click", () => {
+    Swal.fire({
+        position: 'center',
+        icon: 'warning',    //Sweet alert
+        title: '¿Estás seguro?',
+        text: `Tenes ${productosEnCarrito.length} productos en el carrito`,
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+    })
+    .then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',    //Sweet alert
+                title: `Carrito con ${productosEnCarrito.length} productos vaciado correctamente.`,
+                showConfirmButton: true,
+                customClass: {
+                    title: "title-sweet-alert-vaciado",
+                }
+            })
+            accionesVaciarCarrito(); 
+        }
+    })
+});
 
 btnFinalizarCompra.addEventListener("click", () => {
-    compraFinalizada.classList.remove("disabled");
-    seccionProductosElegidos.classList.add("disabled");
-    
-    btnOkCompraFinalizada.addEventListener("click",  () => {
-        compraFinalizada.classList.add("disabled");
-        accionesVaciarCarrito();
-    });
+    Swal.fire({
+        position: 'center',
+        icon: 'success',    //Sweet alert
+        title: 'Su compra se realizó con exito!',
+        showConfirmButton: true,
+        customClass: {
+            title: "title-sweet-alert-comprado",
+        }
+    })
+    accionesVaciarCarrito();
 })
-
-
 
 function accionesVaciarCarrito () {
     seccionProductosElegidos.classList.add("disabled"); //Le añadimos la clase disabled al carrito y a la seccion de productos elegidos
@@ -153,6 +193,16 @@ function cargarProductosCarrito() {
 
 //Función que se va a ejecutar cuando le demos click a cada boton de agregar al carrito
 function agregarAlCarrito (e) {
+    Toastify({
+        text: "Producto agregado",
+        duration: 1800,
+        close: true,
+        style: {
+            background: `#ffcc02`,
+            fontSize: "0.8rem",
+        }
+        }).showToast();
+
     productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
 
     let idBoton = e.currentTarget.id; //Esta propiedad captura al elemento al que se le dio click y toma su id
@@ -206,6 +256,16 @@ function actualizarBotonesEliminar() {
 }
 
 function eliminarDelCarrito (e) {  
+    Toastify({
+        text: "Producto eliminado",
+        duration: 1500,
+        close: true,
+        style: {
+            background: `#ffcc02`,
+            fontSize: "0.8rem",
+        }
+        }).showToast();
+
     let idBoton = e.currentTarget.id;
     let i = productosEnCarrito.findIndex(producto => idBoton === producto.nombre);
     productosEnCarrito.splice(i,1);

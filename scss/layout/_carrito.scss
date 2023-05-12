@@ -49,9 +49,7 @@
                 color: $color-principal;
             }
             .right {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                @include flexbox (row,center,center);
                 gap: 40px;
                 .vaciar-carrito {
                     border: none;
@@ -72,29 +70,21 @@
             min-height: 100px;
             max-height: 60vh;
             overflow-y:scroll;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            @include flexbox (column,normal,center);
             gap: 10px;
-            
             .productoElegido__container{
                 width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+                @include flexbox (row,space-between,center);
                 .img-producto {
                     height: 100px;
                     width: 80px;
                     img {
                         height: 100%;
-                        width: 100%;
-                        
+                        width: 100%;   
                     }
                 }
                 .cant {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include flexbox (row,center,center);
                     gap: 9px;
                     .icon-menos, .icon-mas {
                         border: none;
@@ -123,9 +113,7 @@
             border: none;
             background-color: $color-principal;
             color: $color-white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flexbox (row,center,center);
             padding: 20px 0;
             font-weight: 600;
             font-size: 1.2rem;

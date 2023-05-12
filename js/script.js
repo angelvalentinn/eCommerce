@@ -122,11 +122,8 @@ vaciarCarrito.addEventListener("click", () => {
             Swal.fire({
                 position: 'center',
                 icon: 'success',    //Sweet alert
-                title: `Carrito con ${productosEnCarrito.length} productos vaciado correctamente.`,
+                html:`<p style="font-size:1rem; font-weight:500;">Carrito con ${productosEnCarrito.length} productos vaciado correctamente.</p>`,
                 showConfirmButton: true,
-                customClass: {
-                    title: "title-sweet-alert-vaciado",
-                }
             })
             accionesVaciarCarrito(); 
         }
@@ -137,11 +134,8 @@ btnFinalizarCompra.addEventListener("click", () => {
     Swal.fire({
         position: 'center',
         icon: 'success',    //Sweet alert
-        title: 'Su compra se realizó con exito!',
+        html: `<p style="font-size: 1.3rem; font-weight:500;">Su compra se realizó con exito!</p>`,
         showConfirmButton: true,
-        customClass: {
-            title: "title-sweet-alert-comprado",
-        }
     })
     accionesVaciarCarrito();
 })

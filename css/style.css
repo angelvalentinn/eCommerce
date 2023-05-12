@@ -5,7 +5,7 @@
   box-sizing: border-box; }
 
 body {
-  font-family: "Poppins", sans-serif; }
+  font-family: "Poppins", sans-serif;}
 
 .container {
   padding: 40px 0px;
@@ -392,7 +392,9 @@ a {
     display: grid;
     grid-template-columns: 30% 70%;
     grid-template-rows: auto;
-    grid-template-areas: "header__msj header__msj" "header__logo__container header__social" "header__logo__container header__search";
+    grid-template-areas: "header__msj header__msj"
+ "header__logo__container header__social"
+ "header__logo__container header__search";
     align-items: center;
     gap: 0; }
     .header .header__msj {

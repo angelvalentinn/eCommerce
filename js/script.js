@@ -30,7 +30,7 @@ const productos = [
     { nombre: "Centurion - Pellegrini", precio: "2100" , img: "./assets/centurion-pellegrini.webp",cat: "centuriones"},
     { nombre: "Futura Estrella - Adeyemi", precio: "1800" , img: "./assets/futureStar-adeyemi.png", cat: "futurasEstrellas"},
     { nombre: "Centurion - Kimpembe", precio: "2400" , img: "./assets/centurion-kimpembe.webp",cat: "centuriones"},
-    { nombre: "Especial - Cristiano Ronaldo", precio: "800" , img: "../assets/especial-cr7.webp",cat: "especiales"},
+    { nombre: "Especial - Cristiano Ronaldo", precio: "800" , img: "./assets/especial-cr7.webp",cat: "especiales"},
     { nombre: "Centurion - Neymar Jr", precio: "3200" , img: "./assets/centurion-neymar.webp",cat: "centuriones"},
     { nombre: "FlashBack - Pogba", precio: "4000" , img: "./assets/flashback-pogba.webp", cat: "flashbacks"},
     { nombre: "Futura Estrella - Vitinha", precio: "2000" , img: "./assets/futureStar-vitinha.png", cat: "futurasEstrellas"},

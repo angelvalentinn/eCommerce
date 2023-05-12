@@ -207,7 +207,7 @@ function actualizarBotonesEliminar() {
 
 function eliminarDelCarrito (e) {  
     let idBoton = e.currentTarget.id;
-    let i = productosEnCarrito.findIndex(producto => idBoton === producto.id)
+    let i = productosEnCarrito.findIndex(producto => idBoton === producto.nombre);
     productosEnCarrito.splice(i,1);
     localStorage.setItem("productosEnCarrito",JSON.stringify(productosEnCarrito));
     cargarProductosCarrito();

@@ -321,7 +321,6 @@ a {
         .carrito .productosElegidos .productosElegidos__up .right .x {
           cursor: pointer; }
     .carrito .productosElegidos .productosElegidos__content {
-      padding-top: 1rem;
       padding-inline: 20px;
       margin: auto;
       width: 100%;
@@ -331,7 +330,6 @@ a {
       overflow-y: scroll;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       gap: 10px; }
       .carrito .productosElegidos .productosElegidos__content .productoElegido__container {

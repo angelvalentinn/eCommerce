@@ -1,10 +1,10 @@
 //Obtención de elementos del DOM
-let cardsContainer = document.querySelector(".contenedorDeCards");
-let catLi = document.querySelectorAll(".cat__li"); //Nodelist
+const cardsContainer = document.querySelector(".contenedorDeCards");
+const catLi = document.querySelectorAll(".cat__li"); //Nodelist
 let seccionCarrito = document.getElementById("seccion-carrito");
 let carrito = document.getElementById("icono-carrito");
 let botonesAgregar = document.querySelectorAll(".card__btn");
-let seccionProductosElegidos = document.getElementById("seccion-productosElegidos");
+seccionProductosElegidos = document.getElementById("seccion-productosElegidos");
 let numerito = document.getElementById("num");
 let vaciarCarrito = document.getElementById("vaciar-carrito");
 let productosElegidosContenedor = document.querySelector(".productosElegidos__content");
@@ -16,39 +16,25 @@ let btnOkCompraFinalizada = document.querySelector(".compra-finalizada__btn");
 let btnAbrir = document.querySelector(".btn-abrir");
 let btnCerrar = document.querySelector(".btn-cerrar");
 
-//Array de objetos con los productos
-const productos = [ 
-    { nombre: "Especial - Joao Cancelo", precio: "400" , img: "./assets/especial-cancelo.webp",cat: "especiales"},
-    { nombre: "World Cup - Vini JR", precio: "6000" , img: "./assets/wc-vini.webp", cat: "wc"},
-    { nombre: "Centurion - Alexander Arnold", precio: "2500" , img: "./assets/centurion-arnold.webp",cat: "centuriones"},
-    { nombre: "Winter - Dembelé", precio: "3200" , img: "./assets/winter-dembele.webp", cat: "winter"},
-    { nombre: "Futura Estrella - Gavi", precio: "2100" , img: "./assets/futureStar-gavi.png", cat: "futurasEstrellas"},
-    { nombre: "Especial - Kevin De Bruyne", precio: "500" , img: "./assets/especial-debruyne.webp",cat: "especiales"},
-    { nombre: "FlashBack - Balotelli", precio: "2200" , img: "./assets/flashback-balotelli.webp", cat: "flashbacks"},
-    { nombre: "Futura Estrella - Alvarez", precio: "2400" , img: "./assets/futureStar-alvarez.png", cat: "futurasEstrellas"},
-    { nombre: "World Cup - Koulibaly", precio: "3299" , img: "./assets/wc-koulibaly.webp", cat: "wc"},
-    { nombre: "Winter - Joao Felix", precio: "3000" , img: "./assets/winter-felix.webp", cat: "winter"},
-    { nombre: "FlashBack - Jorginho", precio: "2700" , img: "./assets/flashback-jorginho.webp", cat: "flashbacks"},
-    { nombre: "Especial - Mohamed Salah", precio: "900" , img: "./assets/especial-salah.webp",cat: "especiales"},
-    { nombre: "FlashBack - Leo Messi", precio: "7000" , img: "./assets/flashback-messi.webp", cat: "flashbacks"},
-    { nombre: "Centurion - Pellegrini", precio: "2100" , img: "./assets/centurion-pellegrini.webp",cat: "centuriones"},
-    { nombre: "World Cup - Grealish", precio: "2800" , img: "./assets/wc-grealish.webp", cat: "wc"},
-    { nombre: "Winter - Ngolo Kante", precio: "4100" , img: "./assets/winter-kante.webp", cat: "winter"},
-    { nombre: "Futura Estrella - Adeyemi", precio: "1800" , img: "./assets/futureStar-adeyemi.png", cat: "futurasEstrellas"},
-    { nombre: "Centurion - Kimpembe", precio: "2400" , img: "./assets/centurion-kimpembe.webp",cat: "centuriones"},
-    { nombre: "Especial - Cristiano Ronaldo", precio: "800" , img: "./assets/especial-cr7.webp",cat: "especiales"},
-    { nombre: "FlashBack - Thiago Silva", precio: "2500" , img: "./assets/flashback-silva.webp", cat: "flashbacks"},
-    { nombre: "Centurion - Neymar Jr", precio: "3200" , img: "./assets/centurion-neymar.webp",cat: "centuriones"},
-    { nombre: "World Cup - Carvajal", precio: "2500" , img: "./assets/wc-carvajal.webp", cat: "wc"},
-    { nombre: "Winter - Ferland Mendy", precio: "2900" , img: "./assets/winter-mendy.webp", cat: "winter"},
-    { nombre: "FlashBack - Pogba", precio: "4000" , img: "./assets/flashback-pogba.webp", cat: "flashbacks"},
-    { nombre: "Futura Estrella - Vitinha", precio: "2000" , img: "./assets/futureStar-vitinha.png", cat: "futurasEstrellas"},
-    { nombre: "FlashBack - Spinazzola", precio: "3000" , img: "./assets/flashback-spinazzola.webp", cat: "flashbacks"},
-    { nombre: "Futura Estrella - Mudrik", precio: "2300" , img: "./assets/futureStar-mudrik.png", cat: "futurasEstrellas"},
-    { nombre: "Winter - Jadon Sancho", precio: "3300" , img: "./assets/winter-sancho.webp", cat: "winter"},
-    { nombre: "World Cup - Araujo", precio: "2800" , img: "./assets/wc-araujo.webp", cat: "wc"}
+let productos = [];
 
-];
+//Traemos los productos con fetch async y await de un json local
+const productosFetch = async () => {
+    let productosEnFetch = await fetch("./js/productos.json");
+    productosEnFetch = await productosEnFetch.json();
+    productos = productosEnFetch;
+    cargarProductos(productos);
+}
+productosFetch();
+
+//Otra forma de traer los productos de un json local
+/* fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {         
+        productos = data;  
+        cargarProductos(productos); 
+    })
+ */
 
 //Función que carga los productos en el dom y se envía por parametro el array con la información de los productos
 function cargarProductos (productosElegidos) {
@@ -68,9 +54,6 @@ function cargarProductos (productosElegidos) {
     actualizarBotonesAgregar(); //Cuando carga la página y se cargan todos los productos el DOM obtiene la nodelist con todos los elementos
                                 //Y cada vez que cambiemos de categoría suecede lo mismo, se cargan nuevas cards y luego el documento las obtiene
 }
-
-//Llamamos a la funcion  para cargar en el dom los productos
-cargarProductos(productos);
 
 //Recorremos la  nodelist de los li y les agregamos un evento en el que dependiendo de su categoría se muestren 
 catLi.forEach(li => {
@@ -176,6 +159,7 @@ function cargarProductosCarrito() {
             div.classList.add("productoElegido__container");
             div.innerHTML = `
             <div class="img-producto"><img src="${producto.img}" alt=""></div>
+            <p class="cant"><button class="icon-menos">-</button> 1 <button class="icon-mas">+</button></p>
             <p class="precio">Total: $${producto.precio}</p>
             <div class="trash" id="${producto.nombre}"><i class="fa-solid fa-trash"></i></div>
             `;

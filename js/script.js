@@ -4,7 +4,7 @@ const catLi = document.querySelectorAll(".cat__li"); //Nodelist
 let seccionCarrito = document.getElementById("seccion-carrito");
 let carrito = document.getElementById("icono-carrito");
 let botonesAgregar = document.querySelectorAll(".card__btn");
-seccionProductosElegidos = document.getElementById("seccion-productosElegidos");
+let seccionProductosElegidos = document.getElementById("seccion-productosElegidos");
 let numerito = document.getElementById("num");
 let vaciarCarrito = document.getElementById("vaciar-carrito");
 let productosElegidosContenedor = document.querySelector(".productosElegidos__content");
@@ -21,22 +21,26 @@ let productos = [];
 //Traemos los productos con fetch async y await de un json local
 const productosFetch = async () => {
     try {
-        let productosEnFetch = await fetch("./js/productos.json");
-        productosEnFetch = await productosEnFetch.json();
-        productos = productosEnFetch;
-        cargarProductos(productos);
+        //Usamos una funcion asincronica para que nos devuelva los datos que pedimos con fetch
+        //y esperamos esa respuesta
+        let productosEnFetch = await fetch("./js/productos.json"); //await desencapsula la promesa y espera a la respuesta
+        productosEnFetch = await productosEnFetch.json(); //aca desencapsulamos y convertimos la respuesta en json
+        productos = productosEnFetch; //Asignamos lo que obtuvimos del json a productos
+        cargarProductos(productos); //y cargamos
     } catch(e) {
-        console.log(e);
+        console.log(e); //Usamos catch en caso de que haya un error 
     }
 }
 productosFetch();
 
+
 //Otra forma de traer los productos de un json local
-/* fetch("./js/productos.json")
-    .then(response => response.json())
-    .then(data => {         
-        productos = data;  
-        cargarProductos(productos); 
+/* 
+    fetch("./js/productos.json")
+        .then(response => response.json())
+        .then(data => {         
+            productos = data;  
+            cargarProductos(productos); 
     })
  */
 
@@ -163,12 +167,13 @@ function cargarProductosCarrito() {
             div.classList.add("productoElegido__container");
             div.innerHTML = `
             <div class="img-producto"><img src="${producto.img}" alt=""></div>
-            <p class="cant"><button class="icon-menos">-</button> 1 <button class="icon-mas">+</button></p>
-            <p class="precio">Total: $${producto.precio}</p>
+            <p class="cant"><button class="icon-menos">-</button> ${producto.cant} <button class="icon-mas">+</button></p>
+            <p class="precio">$${producto.precio * producto.cant}</p>
             <div class="trash" id="${producto.nombre}"><i class="fa-solid fa-trash"></i></div>
             `;
             productosElegidosContenedor.append(div);
         })
+
     actualizarBotonesEliminar(); /* Cada vez que agreguemos un producto al carrito se actualizan los botones, es decir,
     el dom vuelve a obtener los botones eliminar y les añade un evento eliminar del carrito*/ 
 }
@@ -191,8 +196,13 @@ function agregarAlCarrito (e) {
     let productoAgregado = productos.find(producto => producto.nombre === idBoton); //Buscamos en el array de productos si a lo que le dimos click existe en el array
     
     //Aca buscamos si ya existe en el array de carrito lo que queremos añadir, si es existe incrementamos la cantidad y si no, le declaramos la cantidad en 0 y pusheamos en el carrito el producto
-    
-    productosEnCarrito.push(productoAgregado);
+    if (productosEnCarrito.some(producto => idBoton == producto.nombre)) {
+        let i = productosEnCarrito.findIndex(producto => idBoton == producto.nombre);
+        productosEnCarrito[i].cant++;
+    } else {
+        productoAgregado.cant = 1;
+        productosEnCarrito.push(productoAgregado);
+    }
     
     guardarEnLocal();
     cargarProductosCarrito();
@@ -209,7 +219,7 @@ function agregarAlCarrito (e) {
 //Funcion para actualizar el numerito cuando necesitemos
 function actualizarNumerito() {
     numerito.classList.remove("disabled");
-    let nuevoNumerito = productosEnCarrito.length;
+    let nuevoNumerito = productosEnCarrito.reduce( (acc,producto) => acc + producto.cant, 0);
     /* nuevo numerito va a ser la longitud de lo que haya en el carrito, lo almacenamos en el local
     y usamos innerText para poner el valor del numerito de lo que haya en el storage */
     localStorage.setItem("numerito", JSON.stringify(nuevoNumerito));
@@ -218,7 +228,7 @@ function actualizarNumerito() {
 
 
 function actualizarTotal () {
-    let totalDeProductos = productosEnCarrito.reduce((acum,producto) => acum + parseInt(producto.precio), 0);
+    let totalDeProductos = productosEnCarrito.reduce((acum,producto) => acum + parseFloat(producto.precio * producto.cant), 0);
     total.innerText = ""; 
     localStorage.setItem("total",JSON.stringify(totalDeProductos));
     /* Reduce de todos los precios de los productos que se hayan agregado, seteamos el total  */

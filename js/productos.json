@@ -13,7 +13,6 @@
     { "nombre": "Especial - Mohamed Salah", "precio": "900" , "img": "./assets/especial-salah.webp","cat": "especiales"},
     { "nombre": "FlashBack - Leo Messi", "precio": "7000" , "img": "./assets/flashback-messi.webp", "cat": "flashbacks"},
     { "nombre": "Centurion - Pellegrini", "precio": "2100" , "img": "./assets/centurion-pellegrini.webp","cat": "centuriones"},
-    { "nombre": "World Cup - Grealish", "precio": "2800" ," img": "./assets/wc-grealish.webp", "cat": "wc"},
     { "nombre": "Winter - Ngolo Kante", "precio": "4100" , "img": "./assets/winter-kante.webp", "cat": "winter"},
     { "nombre": "Futura Estrella - Adeyemi", "precio": "1800" , "img": "./assets/futureStar-adeyemi.png", "cat": "futurasEstrellas"},
     { "nombre": "Centurion - Kimpembe", "precio": "2400" , "img": "./assets/centurion-kimpembe.webp","cat": "centuriones"},

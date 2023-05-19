@@ -357,6 +357,8 @@ a {
             font-size: 1.3rem;
             font-weight: 600;
             cursor: pointer; }
+        .carrito .productosElegidos .productosElegidos__content .productoElegido__container .precio {
+          font-weight: 600; }
         .carrito .productosElegidos .productosElegidos__content .productoElegido__container .trash {
           color: #ffcc02;
           cursor: pointer; }

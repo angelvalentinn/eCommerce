@@ -20,10 +20,14 @@ let productos = [];
 
 //Traemos los productos con fetch async y await de un json local
 const productosFetch = async () => {
-    let productosEnFetch = await fetch("./js/productos.json");
-    productosEnFetch = await productosEnFetch.json();
-    productos = productosEnFetch;
-    cargarProductos(productos);
+    try {
+        let productosEnFetch = await fetch("./js/productos.json");
+        productosEnFetch = await productosEnFetch.json();
+        productos = productosEnFetch;
+        cargarProductos(productos);
+    } catch(e) {
+        console.log(e);
+    }
 }
 productosFetch();
 

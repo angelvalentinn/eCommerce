@@ -33,7 +33,6 @@ const productosFetch = async () => {
 }
 productosFetch();
 
-
 //Otra forma de traer los productos de un json local
 /* 
     fetch("./js/productos.json")
@@ -167,13 +166,15 @@ function cargarProductosCarrito() {
             div.classList.add("productoElegido__container");
             div.innerHTML = `
             <div class="img-producto"><img src="${producto.img}" alt=""></div>
-            <p class="cant"><button class="icon-menos">-</button> ${producto.cant} <button class="icon-mas">+</button></p>
+            <p class="cant"><button class="icon-menos" id="${producto.nombre}">-</button> ${producto.cant} <button class="icon-mas" id="${producto.nombre}">+</button></p>
             <p class="precio">$${producto.precio * producto.cant}</p>
             <div class="trash" id="${producto.nombre}"><i class="fa-solid fa-trash"></i></div>
             `;
             productosElegidosContenedor.append(div);
         })
 
+    restarProducto();   //Queremos que los botones de añadir y restar productos se busquen en el dom y se ejecuten cada vez que se carguen los productos en el carrito
+    sumarProducto();
     actualizarBotonesEliminar(); /* Cada vez que agreguemos un producto al carrito se actualizan los botones, es decir,
     el dom vuelve a obtener los botones eliminar y les añade un evento eliminar del carrito*/ 
 }
@@ -203,7 +204,7 @@ function agregarAlCarrito (e) {
         productoAgregado.cant = 1;
         productosEnCarrito.push(productoAgregado);
     }
-    
+
     guardarEnLocal();
     cargarProductosCarrito();
     actualizarNumerito();   //Cada vez que se agregue algo carrito queremos que se actualice, el numerito, el total
@@ -225,7 +226,6 @@ function actualizarNumerito() {
     localStorage.setItem("numerito", JSON.stringify(nuevoNumerito));
     numerito.innerText = JSON.parse(localStorage.getItem("numerito"));
 }
-
 
 function actualizarTotal () {
     let totalDeProductos = productosEnCarrito.reduce((acum,producto) => acum + parseFloat(producto.precio * producto.cant), 0);
@@ -271,5 +271,40 @@ function eliminarDelCarrito (e) {
     //Si cuando eliminamos productos uno por uno ya no queda nada, es decir, estamos por eliminar el ultimo producto, 
     //Desaparece el carrito
     }
+}
+
+function restarProducto() {
+    let decresed = document.querySelectorAll(".icon-menos");
+    decresed.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            let idBoton = e.currentTarget.id;
+            let productoARestar = productosEnCarrito.find(producto => idBoton === producto.nombre);
+            
+            if( productoARestar.cant > 1 ) {
+                productoARestar.cant--;
+                cargarProductosCarrito();
+                guardarEnLocal();
+                actualizarTotal();
+                actualizarNumerito();
+            }
+        })
+    })
+}
+
+function sumarProducto() {
+    let increse = document.querySelectorAll(".icon-mas");
+    increse.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            let idBoton = e.currentTarget.id;
+            let productoASumar = productosEnCarrito.find(producto => idBoton === producto.nombre);
+
+            productoASumar.cant++;
+            cargarProductosCarrito();
+            guardarEnLocal();
+            actualizarTotal();
+            actualizarNumerito();
+
+        })
+    })
 }
 

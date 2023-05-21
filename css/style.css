@@ -274,7 +274,9 @@ a {
     padding: 20px 30px;
     color: #ffcc02;
     box-shadow: 0 0 10px #b1b1b1;
-    position: relative; }
+    position: relative;
+    -webkit-animation: shake-bottom 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+    animation: shake-bottom 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both; }
     .carrito .icono-carrito .num {
       border: 2px solid #ffcc02;
       background-color: #ffcc02;
@@ -383,6 +385,60 @@ a {
       .carrito .productosElegidos .finalizar-compra:hover {
         background-color: #000;
         transition: .4s ease; }
+
+@-webkit-keyframes shake-bottom {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%; }
+  10% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg); }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-4deg);
+    transform: rotate(-4deg); }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(4deg);
+    transform: rotate(4deg); }
+  80% {
+    -webkit-transform: rotate(-2deg);
+    transform: rotate(-2deg); }
+  90% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg); } }
+
+@keyframes shake-bottom {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%; }
+  10% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg); }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-4deg);
+    transform: rotate(-4deg); }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(4deg);
+    transform: rotate(4deg); }
+  80% {
+    -webkit-transform: rotate(-2deg);
+    transform: rotate(-2deg); }
+  90% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg); } }
 
 @media screen and (min-width: 600px) {
   .header .header__logo__container {

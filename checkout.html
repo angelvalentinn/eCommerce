@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6006c8cd38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Finalizar compra | FutCard</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header container">
+            <div class="header__msj">Adquirí tu carta al instante!</div>
+
+            <a class="header__logo__container" href="index.html">
+                <div class="header__container__img">
+                    <img class="header__img" src="./assets/logo.png" alt="Logo" />
+                </div>
+                <h1 class="header__tittle"><span>Futcard</span> Store</h1>
+            </a>
+
+            <div class="header__social">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="far fa-envelope-open"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-solid fa-phone"></i></a>
+            </div>
+
+            <form action="" class="header__search">
+                <input type="text" placeholder="Buscar cartas" class="buscar" />
+                <input type="submit" class="botonbuscar" value="🔎︎" />
+            </form>
+        </header>
+
+        <main class="checkout__main container">
+            <section class="back-index">
+                <h5>¡Muchas Gracias!</h5>
+                <p>Te envíaremos un mail con la factura de compra.</p>
+                <p>Numero de orden: <span id="orden-random">djTdOMLhnaWM3gDBkXsE</span></p>
+                <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver a la tienda</a>
+            </section>
+            <section class="form-container">
+                <form class="form">
+                    <h3><i class="fa-solid fa-user"></i>Tus datos</h3>
+                    <input type="text" placeholder="Nombre" id="input-nombre" minlength="4" required tabindex="1" name="nombre">
+                    <input type="text" placeholder="Email" id="input-email" required tabindex="2" name="email">
+                    <input type="text" placeholder="Dirección" id="input-direccion" required minlength="4" tabindex="3" name="direccion">
+                    <button type="submit" id="btn-enviar" class="checkout__btn-enviar" tabindex="4"><i class="fa-regular fa-credit-card"></i>Enviar orden</button> 
+                </form>
+            </section>
+            <section class="tu-compra">
+                <div class="tu-compra__container">
+                    <h3>Tu carrito</h3>
+                    <div class="tus-productos">
+                        <!-- Se rellena con js -->
+                    </div>
+                    <div class="tu-compra__total">
+                        <h6>Total</h6>
+                        <p id="tu-compra__total"></p>
+                    </div>
+                </div>
+
+                <section class="tus-detalles">
+                    <h6>Tus detalles</h6>
+                    <div class="tus-detalles__container">
+                        <p class="nombre"></p>
+                        <p class="email"></p>
+                        <p class="direc"></p>
+                    </div>
+                </section>
+
+            </section>
+            
+        </main>
+
+        <footer class="footer container">
+            <h6 class="footer__text">
+                Ángel Altieri - Coderhouse
+            </h6>
+
+            <div class="redes">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/checkout.js"></script>
+</body>
+
+</html>

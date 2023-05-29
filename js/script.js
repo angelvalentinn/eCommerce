@@ -120,15 +120,6 @@ vaciarCarrito.addEventListener("click", () => {
     })
 });
 
-btnFinalizarCompra.addEventListener("click", () => {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',    //Sweet alert
-        html: `<p style="font-size: 1.3rem; font-weight:500;">Su compra se realizó con exito!</p>`,
-        showConfirmButton: true,
-    })
-    accionesVaciarCarrito();
-})
 
 function accionesVaciarCarrito () {
     seccionProductosElegidos.classList.add("disabled"); //Le añadimos la clase disabled al carrito y a la seccion de productos elegidos
@@ -145,7 +136,7 @@ function accionesVaciarCarrito () {
 let productosEnCarrito;
 
 //Declaramos esta constante en donde si en productos en carrito hay algo almacenado lo asignamos y si no hay nada es vacio
-const productosEnCarritoLS = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
+let productosEnCarritoLS = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
 
 productosEnCarrito = productosEnCarritoLS;//Asignamos lo que haya en productosencarritols en el array principal
 actualizarBotonesEliminar();
@@ -158,7 +149,7 @@ productosEnCarrito.length == 0 ? carrito.classList.add("disabled") : carrito.cla
 //Funcion que carga productos en carrito
 function cargarProductosCarrito() {
         productosElegidosContenedor.innerHTML = ""; //Si hay algo en el dom lo seteamos para que no se sobreescriba
-
+        
         productosEnCarrito.forEach(producto => {
             //Recorremos lo que se haya agregado y lo mostramos en el dom
             productosElegidosContenedor = document.querySelector(".productosElegidos__content");
@@ -181,6 +172,16 @@ function cargarProductosCarrito() {
 
 //Función que se va a ejecutar cuando le demos click a cada boton de agregar al carrito
 function agregarAlCarrito (e) {
+
+    carrito.style.animation = "none";
+    setTimeout(()=> {
+        carrito.style.animation = "shake-bottom 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both";
+    },0); //añadimos una animacion cada vez que añadimos un producto al carrito.
+        /* A si que cuando añadimos un producto lo primero que pasa es que se borra la animacion. Se manda a otro thread la funcion 
+        que usamos para agregar la animacion entonces cuando se termine de ejecutar el call stack, el event loop envía esta función
+         y agrega la animacion */
+        
+    
     Toastify({
         text: "Producto agregado",
         duration: 1800,

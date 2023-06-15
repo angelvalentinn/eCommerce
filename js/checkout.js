@@ -1,3 +1,4 @@
+//Traemos del local storage el array de productos en carrito y lo convertimos a objeto json
 productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito"));
 
 const tusProductos = document.querySelector(".tus-productos");
@@ -49,22 +50,22 @@ formulario.addEventListener("submit", (e) => {
 
     Swal.fire({
         position: 'center',
-        icon: 'success',    //Sweet alert
+        icon: 'success',    
         html: `<p style="font-size: 1.3rem; font-weight:500;">Su compra se realizó con exito!</p>`,
         showConfirmButton: true,
     })
     localStorage.removeItem("productosEnCarrito");
-    localStorage.removeItem("numerito");    //Vaciamos el local del total, numerito y el array y seteamos el DOM
+    localStorage.removeItem("numerito");    
     localStorage.removeItem("total");
 })
 
 
 
 function generarLetraRandom() {
-    let codigoLetra = Math.floor( 65 + Math.random() * (122 - 65));
+    let codigoLetra = Math.floor( 65 + Math.random() * (122 - 65 + 1));
     
     while(codigoLetra >= 91 && codigoLetra <=96) {
-        codigoLetra = Math.floor( 65 + Math.random() * (122 - 65));
+        codigoLetra = Math.floor( 65 + Math.random() * (122 - 65 + 1));
     }
 
     let letra = String.fromCharCode(codigoLetra); 

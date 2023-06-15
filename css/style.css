@@ -440,110 +440,76 @@ a {
     -webkit-transform: rotate(2deg);
     transform: rotate(2deg); } }
 
-@media screen and (min-width: 600px) {
-  .header .header__logo__container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    padding-left: 40px; } }
-
-@media screen and (min-width: 800px) {
-  .header {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    grid-template-rows: auto;
-    grid-template-areas: "header__msj header__msj" "header__logo__container header__social" "header__logo__container header__search";
-    align-items: center;
-    gap: 0; }
-    .header .header__msj {
-      grid-area: header__msj;
-      margin-bottom: 20px; }
-    .header .header__logo__container {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      width: 100%;
-      padding-left: 40px;
-      grid-area: header__logo__container; }
-    .header .header__social {
-      grid-area: header__social; }
-    .header .header__search {
-      grid-area: header__search; }
-      .header .header__search .buscar {
-        width: 100%; } }
-
-@media screen and (min-width: 600px) {
-  .cat .content .content__bienvenido {
-    font-size: 1.2rem; }
-  .cat .content .content__tittle {
-    width: 50%;
-    font-size: 1.6rem; }
-  .cat .content .content__text {
-    font-size: 1.3rem; } }
-
-@media screen and (min-width: 800px) {
-  .cat {
-    padding-bottom: 40px;
-    padding-top: 30px;
-    /* background-image:
-        linear-gradient(0deg, rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5))
-        , url(../assets/manodedios.png);
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover; */ }
-    .cat .content {
-      gap: 1.6rem; }
-      .cat .content .content__bienvenido {
-        font-weight: 400;
-        font-size: 1.4rem; }
-      .cat .content .content__tittle {
-        font-size: 2.6rem; }
-      .cat .content .content__text {
-        width: 50%; }
-      .cat .content .content__container__img {
-        height: 600px;
-        width: 600px;
-        right: 10px;
-        top: 0; }
-        .cat .content .content__container__img .content__img {
-          height: 100%;
-          width: 100%; } }
-
-@media screen and (min-width: 600px) {
-  .card .card__container {
-    border-radius: 1.5rem;
-    padding: 0.5rem 0; }
-    .card .card__container .card__img {
-      height: 200px;
-      width: 200px; }
-    .card .card__container .card__nick {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      width: 100%;
-      margin: 0 auto; }
-    .card .card__container .card__precio {
-      font-size: 1.5rem; }
-    .card .card__container .card__btn {
-      padding: 0.7rem 0;
-      width: 80%;
-      font-size: 0.7rem; }
-      .card .card__container .card__btn a {
-        font-weight: 600; } }
-
-@media screen and (min-width: 800px) {
-  .card {
-    justify-content: center;
-    padding-right: 40px; }
-    .card .list {
+@media screen and (max-width: 503px) {
+  .carrito {
+    position: fixed;
+    background-color: #fff; }
+    .carrito .icono-carrito .num {
+      min-width: 2rem;
+      height: 2rem;
+      font-size: 1rem;
+      position: absolute;
       display: block;
-      width: 80%;
-      max-width: 800px;
-      margin-inline: 120px;
-      margin-bottom: 20px; } }
+      top: -10px;
+      left: -4px;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .carrito .productosElegidos {
+      padding: 5px 0;
+      padding-bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: #fff; }
+      .carrito .productosElegidos .productosElegidos__up {
+        padding-inline: 20px;
+        padding-bottom: 10px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ccc; }
+        .carrito .productosElegidos .productosElegidos__up .productosElegidos__tittle {
+          color: #ffcc02; }
+        .carrito .productosElegidos .productosElegidos__up .right {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          gap: 40px; }
+          .carrito .productosElegidos .productosElegidos__up .right .vaciar-carrito {
+            border: none;
+            background-color: inherit;
+            font-weight: 600;
+            cursor: pointer; }
+          .carrito .productosElegidos .productosElegidos__up .right .x {
+            cursor: pointer; }
+      .carrito .productosElegidos .productosElegidos__content {
+        padding-inline: 10px;
+        min-height: 50px;
+        max-height: 100vh;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        justify-content: normal;
+        align-items: center;
+        gap: 10px; }
+        .carrito .productosElegidos .productosElegidos__content .productoElegido__container .img-producto {
+          height: 70px;
+          width: 70px; }
+        .carrito .productosElegidos .productosElegidos__content .productoElegido__container .cant .icon-menos,
+        .carrito .productosElegidos .productosElegidos__content .productoElegido__container .cant .icon-mas {
+          font-size: 1.3rem; }
+        .carrito .productosElegidos .productosElegidos__content .productoElegido__container .precio {
+          font-size: 1rem; } }
 
 .wrapper .checkout__main {
   display: flex;
@@ -705,3 +671,165 @@ a {
       .wrapper .checkout__main .tu-compra .tus-detalles h6 {
         font-size: 1.2rem;
         padding-bottom: 1rem; }
+
+@media screen and (max-width: 837px) {
+  .wrapper .checkout__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 2.3rem;
+    background-color: #fff;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-top: 0; }
+    .wrapper .checkout__main .back-index {
+      margin: 0;
+      width: 80%;
+      justify-self: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: normal;
+      align-items: normal;
+      gap: 1.5rem;
+      display: none; }
+    .wrapper .checkout__main .form-container {
+      align-self: center;
+      justify-self: center;
+      width: 300px;
+      margin: 0;
+      margin-right: 2rem;
+      margin-bottom: 1rem; }
+      .wrapper .checkout__main .form-container .form .checkout__btn-enviar i {
+        display: none; }
+    .wrapper .checkout__main .tu-compra {
+      border-radius: 20px 20px 0 0; }
+      .wrapper .checkout__main .tu-compra .tu-compra__container {
+        margin-top: 1rem;
+        margin-right: 3rem; }
+        .wrapper .checkout__main .tu-compra .tu-compra__container h3 {
+          text-align: center; }
+        .wrapper .checkout__main .tu-compra .tu-compra__container .tus-productos {
+          row-gap: .9rem; }
+          .wrapper .checkout__main .tu-compra .tu-compra__container .tus-productos .tu-producto {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center; }
+            .wrapper .checkout__main .tu-compra .tu-compra__container .tus-productos .tu-producto .img-producto {
+              height: 60px;
+              width: 60px; }
+        .wrapper .checkout__main .tu-compra .tu-compra__container .tu-compra__total {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          align-items: center; }
+      .wrapper .checkout__main .tu-compra .tus-detalles {
+        width: 300px;
+        text-align: center;
+        display: none; } }
+
+@media screen and (min-width: 600px) {
+  .header .header__logo__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-left: 40px; } }
+
+@media screen and (min-width: 800px) {
+  .header {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto;
+    grid-template-areas: "header__msj header__msj" "header__logo__container header__social" "header__logo__container header__search";
+    align-items: center;
+    gap: 0; }
+    .header .header__msj {
+      grid-area: header__msj;
+      margin-bottom: 20px; }
+    .header .header__logo__container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      padding-left: 40px;
+      grid-area: header__logo__container; }
+    .header .header__social {
+      grid-area: header__social; }
+    .header .header__search {
+      grid-area: header__search; }
+      .header .header__search .buscar {
+        width: 100%; } }
+
+@media screen and (min-width: 600px) {
+  .cat .content .content__bienvenido {
+    font-size: 1.2rem; }
+  .cat .content .content__tittle {
+    width: 50%;
+    font-size: 1.6rem; }
+  .cat .content .content__text {
+    font-size: 1.3rem; } }
+
+@media screen and (min-width: 800px) {
+  .cat {
+    padding-bottom: 40px;
+    padding-top: 30px;
+    /* background-image:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5))
+        , url(../assets/manodedios.png);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover; */ }
+    .cat .content {
+      gap: 1.6rem; }
+      .cat .content .content__bienvenido {
+        font-weight: 400;
+        font-size: 1.4rem; }
+      .cat .content .content__tittle {
+        font-size: 2.6rem; }
+      .cat .content .content__text {
+        width: 50%; }
+      .cat .content .content__container__img {
+        height: 600px;
+        width: 600px;
+        right: 10px;
+        top: 0; }
+        .cat .content .content__container__img .content__img {
+          height: 100%;
+          width: 100%; } }
+
+@media screen and (min-width: 600px) {
+  .card .card__container {
+    border-radius: 1.5rem;
+    padding: 0.5rem 0; }
+    .card .card__container .card__img {
+      height: 200px;
+      width: 200px; }
+    .card .card__container .card__nick {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      width: 100%;
+      margin: 0 auto; }
+    .card .card__container .card__precio {
+      font-size: 1.5rem; }
+    .card .card__container .card__btn {
+      padding: 0.7rem 0;
+      width: 80%;
+      font-size: 0.7rem; }
+      .card .card__container .card__btn a {
+        font-weight: 600; } }
+
+@media screen and (min-width: 800px) {
+  .card {
+    justify-content: center;
+    padding-right: 40px; }
+    .card .list {
+      display: block;
+      width: 80%;
+      max-width: 800px;
+      margin-inline: 120px;
+      margin-bottom: 20px; } }
